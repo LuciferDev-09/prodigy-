@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Dynamic Responsive Landing Page</title>
+  <style>
+    :root{
+      --bg:#0f1724;
+      --card:#0b1220;
+      --muted:#98a0b3;
+      --accent:#6ee7b7;
+      --glass: rgba(255,255,255,0.04);
+      --radius:14px;
+      --maxw:1100px;
+      --ff:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;padding:0;
+      font-family:var(--ff);
+      background:linear-gradient(180deg,#071028 0%, #07192a 60%);
+      color:#e6eef8;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.45;
+    }
+
+    /* layout container */
+    .wrap{max-width:var(--maxw);margin:40px auto;padding:28px;position:relative}
+
+    /* navigation */
+    nav{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
+    .logo{font-weight:700;letter-spacing:0.4px}
+    .navlinks{display:flex;gap:18px;align-items:center}
+    .navlinks a{color:var(--muted);text-decoration:none;padding:8px 12px;border-radius:10px;transition:all .18s ease;cursor:pointer}
+    .navlinks a:hover{color:#072; color:var(--accent);transform:translateY(-3px)}
+
+    .cta{background:linear-gradient(90deg,#10b981,#34d399);padding:8px 14px;border-radius:10px;color:#042; font-weight:700;cursor:pointer}
+
+    /* hero */
+    .hero{display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:center;margin-top:6px}
+    .hero-left h1{font-size:clamp(28px,4.6vw,48px);margin:0 0 12px}
+    .lead{color:var(--muted);font-size:1.02rem}
+    .buttons{margin-top:18px;display:flex;gap:12px}
+    .button{background:var(--glass);padding:12px 16px;border-radius:12px;border:1px solid rgba(255,255,255,0.04);cursor:pointer;transition:transform .15s ease, box-shadow .15s ease}
+    .button:hover{transform:translateY(-6px);box-shadow:0 10px 30px rgba(3,7,18,0.6)}
+
+    /* hero right card - showcase with pointers */
+    .showcase{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border-radius:16px;padding:20px;border:1px solid rgba(255,255,255,0.03);position:relative;min-height:330px}
+    .mock{width:100%;height:100%;border-radius:10px;background:linear-gradient(180deg,#061226,#082036);display:flex;align-items:center;justify-content:center;color:var(--muted);font-weight:600}
+
+    /* pointer badges placed at specific positions */
+    .pointer{position:absolute;display:flex;align-items:center;gap:10px;cursor:default;transition:transform .14s ease;}
+    .pointer .bubble{background:linear-gradient(90deg,#0b1220,rgba(255,255,255,0.02));padding:8px 12px;border-radius:12px;border:1px solid rgba(255,255,255,0.05);backdrop-filter:blur(6px)}
+    .pointer .arrow{width:14px;height:14px;transform:rotate(45deg);background:var(--accent);border-radius:2px;box-shadow:0 6px 14px rgba(0,0,0,0.35)}
+
+    /* specific positions */
+    .p-top-left{top:18px;left:18px}
+    .p-top-right{top:22px;right:18px}
+    .p-bottom{bottom:20px;left:50%;transform:translateX(-50%)}
+
+    /* pointer hover lift */
+    .pointer:hover{transform:translateY(-8px) scale(1.02)}
+    .pointer .bubble strong{display:block}
+    .pointer small{display:block;color:var(--muted);font-size:12px}
+
+    /* features */
+    .features{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:26px}
+    .card{background:var(--card);padding:14px;border-radius:12px;border:1px solid rgba(255,255,255,0.03);transition:transform .18s ease, box-shadow .18s ease}
+    .card:hover{transform:translateY(-10px);box-shadow:0 25px 45px rgba(2,6,18,0.6)}
+    .kicker{background:rgba(255,255,255,0.03);display:inline-block;padding:6px 8px;border-radius:8px;margin-bottom:12px;font-weight:700;color:var(--accent)}
+
+    /* responsive */
+    @media (max-width:980px){
+      .hero{grid-template-columns:1fr 320px}
+      .features{grid-template-columns:repeat(2,1fr)}
+    }
+    @media (max-width:720px){
+      .wrap{margin:18px;padding:18px}
+      nav{flex-direction:row;gap:8px}
+      .hero{grid-template-columns:1fr;}
+      .hero-right{order:-1}
+      .features{grid-template-columns:1fr}
+      .p-top-left,.p-top-right{display:none}
+    }
+
+    /* small pointer indicators for mobile under the mock */
+    .mobile-pointers{display:none;gap:10px;margin-top:10px}
+    @media (max-width:720px){.mobile-pointers{display:flex}}
+
+    /* subtle interactive cursor */
+    .pointer, .button, .cta, .navlinks a{cursor:pointer}
+
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <nav>
+      <div class="logo">ClassACE</div>
+      <div class="navlinks">
+        <a>Product</a>
+        <a>Features</a>
+        <a>Pricing</a>
+        <a>Contact</a>
+        <div class="cta">Get Started</div>
+      </div>
+    </nav>
+
+    <section class="hero">
+      <div class="hero-left">
+        <h1>Smarter classroom management, simplified.</h1>
+        <p class="lead">A responsive landing page example with interactive pointer badges that highlight product features right on the mock — built with clean HTML & CSS and no heavy frameworks.</p>
+        <div class="buttons">
+          <div class="button">Watch demo</div>
+          <div class="button">Download PDF</div>
+        </div>
+
+        <div class="features" style="margin-top:24px">
+          <div class="card">
+            <div class="kicker">Attendance</div>
+            <div><strong>Face-based roll call</strong>
+            <div style="color:var(--muted);margin-top:6px">Automatic attendance using facial recognition & CSV export.</div></div>
+          </div>
+          <div class="card">
+            <div class="kicker">Canvas</div>
+            <div><strong>Interactive whiteboard</strong>
+            <div style="color:var(--muted);margin-top:6px">Draw live in-class with multi-user sync.</div></div>
+          </div>
+          <div class="card">
+            <div class="kicker">Alerts</div>
+            <div><strong>Safety & Alerts</strong>
+            <div style="color:var(--muted);margin-top:6px">Realtime alerts for emergencies & notifications.</div></div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="hero-right">
+        <div class="showcase">
+          <div class="mock">Live app mockup<br><span style="color:var(--muted);font-size:12px">(resize the browser to see responsiveness)</span></div>
+
+          <!-- pointer badges: these are positioned absolutely relative to .showcase -->
+          <div class="pointer p-top-left" style="--pos:tl">
+            <div class="arrow" aria-hidden></div>
+            <div class="bubble"><strong>Live Attendance</strong><small>Auto-mark students</small></div>
+          </div>
+
+          <div class="pointer p-top-right" style="--pos:tr">
+            <div class="bubble"><strong>Canvas Tools</strong><small>Draw & annotate</small></div>
+            <div class="arrow" aria-hidden></div>
+          </div>
+
+          <div class="pointer p-bottom">
+            <div class="arrow" aria-hidden style="background:#60a5fa"></div>
+            <div class="bubble"><strong>Emergency Alerts</strong><small>Sound & notification</small></div>
+          </div>
+
+        </div>
+
+        <div class="mobile-pointers">
+          <div class="card" style="flex:1"><strong>Attendance</strong><div style="color:var(--muted);font-size:13px">Auto roll call</div></div>
+          <div class="card" style="flex:1"><strong>Canvas</strong><div style="color:var(--muted);font-size:13px">Draw</div></div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <script>
+    // Optional: demo of interactive pointer repositioning for larger screens
+    (function(){
+      const pTL = document.querySelector('.p-top-left');
+      const pTR = document.querySelector('.p-top-right');
+      // subtle animation to move pointers slightly to draw attention
+      let phase = 0;
+      function tick(){
+        phase += 0.02;
+        const offset = Math.sin(phase)*6;
+        if(window.innerWidth>720){
+          if(pTL) pTL.style.transform = `translateY(${offset}px)`;
+          if(pTR) pTR.style.transform = `translateY(${-offset}px)`;
+        }
+        requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+    })();
+  </script>
+</body>
+</html>

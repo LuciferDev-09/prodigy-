@@ -1,59 +1,161 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Suraj Kumar Singh | Portfolio</title>
-    <link rel="stylesheet" href="style.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Weather</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
 </head>
+
 <body>
 
-    <!-- Header Section -->
-    <header class="header">
-        <img src="photo.jpg" alt="Suraj Kumar Singh" class="profile-img">
-        <h1>Suraj Kumar Singh</h1>
-        <p>Frontend Developer | B.Tech (2022–2026)</p>
-    </header>
-
-    <!-- About Section -->
-    <section class="about">
-        <h2>About Me</h2>
-        <p>
-            I am a B.Tech student currently in my 4th year (Batch 2022–2026).
-            I am passionate about problem solving and learning new technologies.
-            I enjoy building clean, responsive, and user-friendly web interfaces.
-        </p>
-    </section>
-
-    <!-- Skills Section -->
-    <section class="skills">
-        <h2>Skills</h2>
-        <div class="skill-list">
-            <span>HTML</span>
-            <span>CSS</span>
-            <span>JavaScript</span>
-            <span>SQL</span>
-            <span>Java</span>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            <!-- <a class="navbar-brand" href="#">Weather App</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">About this app</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            Preferred location
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Delhi</a></li>
+                            <li><a class="dropdown-item" href="#">Noida</a></li>
+                            <li><a class="dropdown-item" href="#">Aligarh</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="">Usage Guide</a>
+                    </li>
+                </ul>
+                <form class="d-flex" role="search"> -->
+                    <input id="city" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="button" id="submit">Search</button>
+                </form>
+            </div>
         </div>
-    </section>
+    </nav>
 
-    <!-- Role Section -->
-    <section class="role">
-        <h2>What I Do</h2>
-        <p>
-    I am a final-year B.Tech student (Batch 2022–2026) and a passionate frontend
-    developer who enjoys solving problems and learning new technologies.
-    I specialize in building clean, responsive, and user-friendly web interfaces
-    that deliver great user experiences. I am constantly improving my skills
-    and exploring modern web development practices.
-</p>
+    <div class="container">
+        <h1 class=" my-4 text-center">Weather for <span id="cityName"></span></h1>
+        <main>
+            <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
+                <div class="col">
+                    <div class="card mb-4 rounded-3 shadow-sm">
+                        <div class="card-header py-3">
+                            <h4 class="my-0 fw-normal">Temperature</h4>
+                        </div>
+                        <div class="card-body" style="height: 250px; text-align: center; padding: 10%;">
+                            <h1 style="text-align: center;">Temperature : <br><span id="temp"></span>
+                            </h1>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card mb-4 rounded-3 shadow-sm">
+                        <div class="card-header py-3">
+                            <h4 class="my-0 fw-normal">Wind Speed</h4>
+                        </div>
+                        <div class="card-body" style="height: 250px; text-align: center; padding: 10%;">
+                            <h1 style="text-align: center;">Wind Speed : <br><span id="wind speed"></span>
+                            </h1>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card mb-4 rounded-3 shadow-sm border-primary">
+                        <div class="card-header py-3 ">
+                            <h4 class="my-0 fw-normal"></h4>Humidity</h4>
+                        </div>
+                        <div class="card-body" style="height: 250px; text-align: center; padding: 10%;">
+                            <h1 style="text-align: center;">Humidity : <br><span id="humidity"></span>
+                            </h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-    </section>
+            <h2 class="display-6 text-center mb-4">Other Cities</h2>
 
-    <!-- Footer -->
-    <footer>
-        <p>© 2026 Suraj Kumar Singh</p>
-    </footer>
+            <div class="table-responsive">
+                <table class="table text-center">
+                    <thead>
+                        <tr>
+                            <th style="width: 34%;"></th>
+                            <th style="width: 22%;">Temperature</th>
+                            <th style="width: 22%;">Wind</th>
+                            <th style="width: 22%;">Humidity</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row" class="text-start">Hyderabad</th>
+                            <td><span id="Hyderabad1"></span></td>
+                            <td><span id="Hyderabad2"></span></td>
+                            <td><span id="Hyderabad3"></span></td>
 
+
+                        </tr>
+                        <tr>
+                            <th scope="row" class="text-start">Bengaluru</th>
+                            <td><span id="Bengaluru1"></span></td>
+                            <td><span id="Bengaluru2"></span></td>
+                            <td><span id="Bengaluru3"></span></td>
+                        </tr>
+                    </tbody>
+
+                    <tbody>
+                        <tr>
+                            <th scope="row" class="text-start">Kolkata</th>
+                            <td><span id="Kolkata1"></span></td>
+                            <td><span id="Kolkata2"></span></td>
+                            <td><span id="Kolkata3"></span></td>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="text-start">Manali</th>
+                            <td><span id="Manali1"></span></td>
+                            <td><span id="Manali2"></span></td>
+                            <td><span id="Manali3"></span></td>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="text-start">Shimla</th>
+                            <td><span id="Shimla1"></span></td>
+                            <td><span id="Shimla2"></span></td>
+                            <td><span id="Shimla3"></span></td>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="text-start">Rishikesh</th>
+                            <td><span id="Rishikesh1"></span></td>
+                            <td><span id="Rishikesh2"></span></td>
+                            <td><span id="Rishikesh3"></span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+
+
+    <button onclick="getWeather()"> search weather</button>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq"
+        crossorigin="anonymous"></script>
+    <script src="script.js"></script>
 </body>
+
 </html>
